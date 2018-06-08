@@ -1,0 +1,22 @@
+<h1>
+    Shopping List
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ingredients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li *ngFor="let content of fridge.contents; let i = index">
+            {{ content.name }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

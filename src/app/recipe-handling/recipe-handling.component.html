@@ -1,0 +1,99 @@
+Index: {{index}}
+<h1>
+    Recipe Handling
+</h1>
+
+<!-- Displaying the list of recipes-->
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Ingredients</th>
+      <th>Instructions</th>
+      <th>Estimated Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipe of recipeList; let i = index">
+      <td>
+        <input id="radioButton{{i}}" type="radio" (click)='setIndex(i)'>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let ingredient of recipe.items; let i = index">
+            {{ ingredient.name }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let instruction of recipe.instructions">
+            {{ instruction }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        {{ recipe.estimatedTime }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<form *ngIf="showForm">
+        <label>Ingredients(Name, Quantity)</label>
+          <div *ngFor="let ingredient of recipe.items; let i = index">
+            <input id="ingredient{{i}}"  name="ingredient{{i}}" type="text" [(ngModel)]="ingredient.name">
+            <input id="quantity{{i}}" name="quantity{{i}}" type="number" [(ngModel)]="ingredient.quantity">
+          </div>
+
+        <input  name="ingredient" type="text" id='ingredient' #ingredient>
+        <input  name="quantity" type="number" id='quantity' #quantity>
+        <button (click)="addIngredient(ingredient, quantity)" id='addIngredient'>Add Ingredient</button>
+
+        <br/>
+
+        <label>Instructions</label>
+        <input *ngFor="let instruction of recipe.instructions; let i = index" name="instruction{{i}}" type="text" [(ngModel)]="recipe.instructions[i]">
+
+        <!-- <input name="instruction" type="text" [(ngModel)]="recipe.instructions"> -->
+
+        <!-- <br/> -->
+
+        <input id="instruction{{i}}" name="instruction" type="text" #instruction>
+        <input type="button" name="addInstruction" value="Add Instruction" (click)="addInstruction(instruction)" id='addInstruction'>
+
+        <!-- <button (click)="addInstruction(instruction)" id='addInstruction'>Add Instruction</button> -->
+
+
+        <br/>
+
+        <label>Estimated Time</label>
+        <input id="estimatedTime" type="number" [(ngModel)]="recipe.estimatedTime" name="estimatedTime">
+
+        <br/>
+
+        <input id="setEstimatedTime"  name="estimatedTime" type="number" #estimatedTime>
+        <button (click)="setEstimatedTime(estimatedTime)">Set Estimated Time</button>
+
+        <br/>
+        <br/>
+        <button id="saveRecipe" (click)="saveRecipe()">Save Recipe</button>
+</form>
+
+<!-->New Recipe Form Button<-->
+<!-- <input type="button" value="New Recipe" (click)="newRecipeForm()" id="toggleMessage">
+<br/> -->
+<!-->Save New Recipe Button<-->
+<br/>
+<input type="button" value="New Recipe" (click)="newRecipe()" id='newRecipe'>
+<br/>
+<!-->Edit Recipe Button<-->
+<input type="button" value="Edit Recipe" (click)="editRecipe()" id='editRecipe'>
+<br/>
+<!-->deleteRecipe Recipe Button<-->
+<input type="button" value="Delete Recipe" (click)="deleteRecipe()" id='deleteRecipe'>
+<br/>
+<!-->Submit Form Button<-->
+<!-- <input type="button" value="Submit Form" (click)="submitForm()">
+<br/> -->
+<!-->Clear Form Button<-->
+<!-- <input type="button" value="Clear Form" (click)="clearForm()"> -->
