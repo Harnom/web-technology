@@ -1,4 +1,41 @@
 <h1>
+    Fridge
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ingredients</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li *ngFor="let content of recipeManagementService.contents; let i = index">
+            {{ content.name }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let content of recipeManagementService.contents; let i = index">
+            {{ content.quantity }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<label>Ingredients(Name, Quantity)</label>
+<input  name="ingredient" type="text" id='ingredient' #ingredient>
+<input  name="quantity" type="number" id='quantity' #quantity>
+<button (click)="recipeManagementService.addItem(ingredient, quantity)" id='addIngredient'>Add Ingredient</button>
+<button (click)="recipeManagementService.removeItem(ingredient, quantity)" id='removeIngredient'>Remove Ingredient</button>
+
+<h1>
     Shopping List
 </h1>
 
@@ -6,14 +43,22 @@
   <thead>
     <tr>
       <th>Ingredients</th>
+      <th>Quantity</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
         <ul>
-          <li *ngFor="let content of fridge.contents; let i = index">
-            {{ content.name }}
+          <li *ngFor="let item of recipeManagementService.shoppingList; let i = index">
+            {{ item.name }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let item of recipeManagementService.shoppingList; let i = index">
+            {{ item.quantity }}
           </li>
         </ul>
       </td>

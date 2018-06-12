@@ -29,22 +29,22 @@ export class Fridge {
      }
   }
 
-//   function checkRecipe (recipe) {
-//     let shoppingList: Array<Item> = [];
-//     let alreadyList: Array<Item> = [];
-//
-//     recipe.ingredients.forEach(a => {
-//       if(contents.contains(a)){
-//         alreadyList.push(a);
-//         if(contents.find(b => b.name == a.name && b.quantity < a.quantity)){
-//           a.quantity = b.quantity - a.quantity;
-//           shoppingList.push(a);
-//         }
-//       }else{
-//         shoppingList.push(a);
-//       }
-//     })
-//
-//     return { "shoppingList": shoppingList, "alreadyList": alreadyList };
-//   }
+  function checkRecipe (recipe) {
+    let shoppingList: Array<Item> = [];
+    let alreadyList: Array<Item> = [];
+
+    recipe.ingredients.forEach(a => {
+      if(contents.contains(a)){
+        alreadyList.push(a);
+        if(contents.find(b => b.name == a.name && b.quantity < a.quantity)){
+          a.quantity = b.quantity - a.quantity;
+          shoppingList.push(a);
+        }
+      }else{
+        shoppingList.push(a);
+      }
+    })
+
+    return { "shoppingList": shoppingList, "alreadyList": alreadyList };
+  }
  }

@@ -19,12 +19,12 @@ export class FridgeComponent implements OnInit {
   ngOnInit() {
   }
 
-  add (item) {
-    this.recipeManagementService.addItem();
+  add (item, quantity) {
+    this.recipeManagementService.addItem(item, quantity);
  }
 
   remove (item, itemAmount) {
-    this.recipeManagementService.removeItem();
+    this.recipeManagementService.removeItem(item, itemAmount);
  }
 
 }
