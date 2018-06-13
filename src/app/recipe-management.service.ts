@@ -13,30 +13,39 @@ import { FridgeComponent } from './fridge/fridge.component';
 })
 export class RecipeManagementService {
 
-  public contents: Item[];
+  public fridge: Fridge;
   public shoppingList: Array<Item> = [];
   public alreadyList: Array<Item> = [];
+
+  shoppingList: Array<Item> = [];
+  alreadyList: Array<Item> = [];
 
   item1 = new Item("Apple", 3);
   item2 = new Item("Apple", 4);
   item3 = new Item("Lime", 1);
   item4 = new Item("Eggs", 1);
 
+  recipeList : Array<Recipe> =[];
+
   public recipe = new Recipe([this.item1, this.item3, this.item4], this.instruction1, 10);
 
+  recipeListIndex;
+
   constructor() {
-    // this.fridge = [];
-    this.contents = [];
+    this.fridge = new Fridge();
+    // this.contents = [];
     let item1 = new Item("Apple", 3);
-    this.contents.push(item1);
+    this.fridge.add(item1);
+
+    this.recipeList = [this.recipe];
   }
 // this.contents.find(i => i.name === item.value).quantity
   addItem (item, quantity) {
     let newItem = new Item(item.value, quantity.value);
-   if(this.contents.find(i => i.name === item.value)){
-     this.contents.find(i => i.name === item.value).quantity += parseInt(quantity.value);
+   if(this.fridge.contents.find(i => i.name === item.value)){
+     this.fridge.contents.find(i => i.name === item.value).quantity += parseInt(quantity.value);
    } else{
-     this.contents.push(newItem);
+     this.fridge.contents.push(newItem);
    }
  }
 
@@ -44,33 +53,26 @@ export class RecipeManagementService {
    let index = -1
    // this.contents.find((i, idx) => i.name === item.name ? index = idx : null);
    // this.contents[index].quantity -= itemAmount;
-   this.contents.find(i => i.name === item.value).quantity -= parseInt(itemAmount.value);
+   this.fridge.contents.find(i => i.name === item.value).quantity -= parseInt(itemAmount.value);
 
    if(item.quantity < 0){
      if(index > -1){
-       this.contents.splice(index, 1);
+       this.fridge.contents.splice(index, 1);
      }
    }
 }
 
- checkRecipe (recipe) {
-  let shoppingList: Array<Item> = [];
-  let alreadyList: Array<Item> = [];
+  setIndex (recipeListIndex) {
+    this.recipeListIndex = recipeListIndex;
+  }
 
-  recipe.ingredients.forEach(a => {
-    if(contents.contains(a)){
-      alreadyList.push(a);
-      if(contents.find(b => b.name == a.name && b.quantity < a.quantity)){
-        a.quantity = b.quantity - a.quantity;
-        shoppingList.push(a);
-      }
-    }else{
-      shoppingList.push(a);
-    }
-  })
+ checkRecipe () {
+   let checkRecipeArray = [];
 
-  this.shoppingList = shoppingList;
-  this.alreadyList = alreadyList;
+   checkRecipeArray = this.fridge.checkRecipe(this.recipeList[this.recipeListIndex]);
+
+   this.shoppingList = checkRecipeArray["shoppingList"];
+   this.alreadyList = checkRecipeArray["alreadyList"];
   // return { "shoppingList": shoppingList, "alreadyList": alreadyList };
 }
 

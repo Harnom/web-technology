@@ -14,9 +14,9 @@ Index: {{index}}
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let recipe of recipeList; let i = index">
+    <tr *ngFor="let recipe of recipeManagementService.recipeList; let i = index">
       <td>
-        <input id="radioButton{{i}}" type="radio" (click)='setIndex(i)'>
+        <input id="radioButton{{i}}" type="radio" (click)='recipeManagementService.setIndex(i)'>
       </td>
       <td>
         <ul>

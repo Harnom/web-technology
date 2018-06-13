@@ -13,14 +13,14 @@
     <tr>
       <td>
         <ul>
-          <li *ngFor="let content of recipeManagementService.contents; let i = index">
+          <li *ngFor="let content of recipeManagementService.fridge.contents; let i = index">
             {{ content.name }}
           </li>
         </ul>
       </td>
       <td>
         <ul>
-          <li *ngFor="let content of recipeManagementService.contents; let i = index">
+          <li *ngFor="let content of recipeManagementService.fridge.contents; let i = index">
             {{ content.quantity }}
           </li>
         </ul>
@@ -58,6 +58,37 @@
       <td>
         <ul>
           <li *ngFor="let item of recipeManagementService.shoppingList; let i = index">
+            {{ item.quantity }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>
+    Already List
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ingredients</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li *ngFor="let item of recipeManagementService.alreadyList; let i = index">
+            {{ item.name }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let item of recipeManagementService.alreadyList; let i = index">
             {{ item.quantity }}
           </li>
         </ul>
