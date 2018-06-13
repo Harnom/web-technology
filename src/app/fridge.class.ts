@@ -27,7 +27,7 @@ export class Fridge {
          this.contents.splice(index, 1);
        }
      }
-  }
+  } 
 
   checkRecipe (recipe) {
     let shoppingList: Array<Item> = [];
